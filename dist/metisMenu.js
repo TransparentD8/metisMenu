@@ -256,23 +256,25 @@
   };
 
   function Plugin(option) {
-    return this.each(function() {
-      var $this = $(this);
-      var data = $this.data('mm');
-      var options = $.extend({},
-        MetisMenu.DEFAULTS,
-        $this.data(),
-        typeof option === 'object' && option
-      );
+   return this.each(function() {
+     var $this = $(this);
+     var data = $this.data('mm');
+     var options = $.extend({},
+       MetisMenu.DEFAULTS,
+       $this.data(),
+       typeof option === 'object' && option
+     );
 
-      if (!data) {
-        $this.data('mm', (data = new MetisMenu(this, options)));
-      }
-      if (typeof option === 'string') {
-        data[option]();
-      }
-    });
-  }
+     if (!data) {
+       $this.data('mm', (data = new MetisMenu(this, options)));
+     } else {
+       $this.data('mm').init();
+     }
+     if (typeof option === 'string') {
+       data[option]();
+     }
+   });
+ }
 
   var old = $.fn.metisMenu;
 
